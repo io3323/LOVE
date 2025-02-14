@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Поздравление для Даши 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #ffb6c1, #ff69b4);
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      opacity: 0;
+      animation: fadeIn 2s forwards;
+    }
+
+    .card {
+      display: none;
+      position: absolute;
+      width: 80%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+      text-align: center;
+      font-size: 1.5rem;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      background-color: white;
+      color: #ff1493;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:hover {
+      background-color: #ff69b4;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: scale(1);
+      }
+      to {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+    }
+
+    /* Сердечки */
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      transform: rotate(-45deg);
+      animation: floatUp 6s linear infinite;
+      opacity: 0;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) rotate(-45deg);
+        opacity: 0;
+      }
+      20% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-10vh) rotate(-45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>С Днём Святого Валентина, Даша! 💖</h1>
+  <button class="btn" onclick="nextCard()">Открыть поздравление 💌</button>
+
+  <div class="card" id="card1">
+    <p>💌 Даша, ты — самое нежное чудо в этом мире! 💕</p>
+    <button class="btn" onclick="nextCard()">➡ Дальше</button>
+  </div>
+
+  <div class="card" id="card2">
+    <p>🌸 Пусть каждый день приносит тебе радость и улыбки! ✨</p>
+    <button class="btn" onclick="nextCard()">➡ Дальше</button>
+  </div>
+
+  <div class="card" id="card3">
+    <p>💖 Ты делаешь мир вокруг прекраснее! Я счастлив быть рядом! 💖</p>
+    <button class="btn" onclick="nextCard()">➡ Дальше</button>
+  </div>
+
+  <div class="card" id="card4">
+    <p>💕 С любовью, Игорь! 💘</p>
+  </div>
+</div>
+
+<script>
+  let cardIndex = 0;
+  const cards = document.querySelectorAll('.card');
+
+  function nextCard() {
+    if (cardIndex < cards.length) {
+      if (cardIndex > 0) {
+        cards[cardIndex - 1].style.animation = 'fadeOut 1s forwards';
+      }
+      cards[cardIndex].style.display = 'block';
+      cards[cardIndex].style.animation = 'fadeIn 1.5s forwards';
+      cardIndex++;
+    }
+  }
+
+  // Функция для создания сердечек
+  function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    document.body.appendChild(heart);
+
+    const size = Math.random() * 20 + 10 + 'px';
+    heart.style.width = size;
+    heart.style.height = size;
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+
+    setTimeout(() => {
+      heart.remove();
+    }, 4000);
+  }
+
+  // Запуск анимации сердечек каждые 200 мс
+  setInterval(createHeart, 200);
+</script>
+
+</body>
+</html>
