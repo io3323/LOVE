@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Поздравление для Даши 💖</title>
+  <title>Для Даши 💖</title>
   <style>
     * {
       margin: 0;
@@ -30,24 +30,8 @@
     }
 
     h1 {
-      font-size: 3rem;
-      opacity: 0;
-      animation: fadeIn 2s forwards;
-    }
-
-    .card {
-      display: none;
-      position: absolute;
-      width: 80%;
-      max-width: 500px;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
-      text-align: center;
-      font-size: 1.5rem;
-      opacity: 0;
-      animation: fadeIn 1.5s forwards;
+      font-size: 2.5rem;
+      transition: opacity 0.5s ease-out;
     }
 
     .btn {
@@ -69,29 +53,32 @@
       transform: scale(1.1);
     }
 
+    .card {
+      display: none;
+      position: absolute;
+      width: 90%;
+      max-width: 400px;
+      background: rgba(255, 255, 255, 0.3);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+      text-align: center;
+      font-size: 1.3rem;
+      opacity: 0;
+      animation: fadeIn 1.5s forwards;
+    }
+
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.8);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     @keyframes fadeOut {
-      from {
-        opacity: 1;
-        transform: scale(1);
-      }
-      to {
-        opacity: 0;
-        transform: scale(0.8);
-      }
+      from { opacity: 1; transform: scale(1); }
+      to { opacity: 0; transform: scale(0.8); }
     }
 
-    /* Сердечки */
+    /* Разные анимации сердечек */
     .heart {
       position: absolute;
       width: 20px;
@@ -102,8 +89,7 @@
       opacity: 0;
     }
 
-    .heart::before,
-    .heart::after {
+    .heart::before, .heart::after {
       content: '';
       position: absolute;
       width: 20px;
@@ -112,36 +98,43 @@
       border-radius: 50%;
     }
 
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-
-    .heart::after {
-      left: 10px;
-      top: 0;
-    }
+    .heart::before { top: -10px; left: 0; }
+    .heart::after { left: 10px; top: 0; }
 
     @keyframes floatUp {
-      0% {
-        transform: translateY(100vh) rotate(-45deg);
-        opacity: 0;
-      }
-      20% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) rotate(-45deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) rotate(-45deg); opacity: 0; }
+      20% { opacity: 1; }
+      100% { transform: translateY(-10vh) rotate(-45deg); opacity: 0; }
+    }
+
+    /* Анимация блесток */
+    .sparkle {
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: sparkleAnimation 2s infinite;
+    }
+
+    @keyframes sparkleAnimation {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.5); opacity: 0.3; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .card { font-size: 1rem; padding: 15px; }
+      .btn { font-size: 1rem; padding: 10px 20px; }
     }
   </style>
 </head>
 <body>
 
 <div class="container">
-  <h1>С Днём Святого Валентина, Даша! 💖</h1>
-  <button class="btn" onclick="nextCard()">Открыть поздравление 💌</button>
+  <h1 id="main-title">С Днём Святого Валентина, Даша! 💖</h1>
+  <button class="btn" id="start-btn" onclick="nextCard()">Открыть поздравление 💌</button>
 
   <div class="card" id="card1">
     <p>💌 Даша, ты — самое нежное чудо в этом мире! 💕</p>
@@ -149,25 +142,49 @@
   </div>
 
   <div class="card" id="card2">
-    <p>🌸 Пусть каждый день приносит тебе радость и улыбки! ✨</p>
+    <p>🌸 Пусть каждый день приносит тебе счастье, свет и радость! ✨</p>
     <button class="btn" onclick="nextCard()">➡ Дальше</button>
   </div>
 
   <div class="card" id="card3">
-    <p>💖 Ты делаешь мир вокруг прекраснее! Я счастлив быть рядом! 💖</p>
+    <p>💖 Ты озаряешь мир своей улыбкой и теплотой, и я счастлив, что ты есть! 💖</p>
     <button class="btn" onclick="nextCard()">➡ Дальше</button>
   </div>
 
   <div class="card" id="card4">
-    <p>💕 С любовью, Игорь! 💘</p>
+    <p>💕 Пусть мечты сбываются, и каждый день будет наполнен любовью! 💘</p>
+    <button class="btn" onclick="nextCard()">➡ Дальше</button>
+  </div>
+
+  <div class="card" id="card5">
+    <p>💞 С любовью, Игорь! 💞</p>
+    <button class="btn" onclick="sendValentine()">💌 Отправить валентинку Игорю</button>
   </div>
 </div>
 
 <script>
+  function sendValentine() {
+    window.location.href = "tg://msg?text=❤️ Это тебе валентинка! ❤️";
+  }
+</script>
+
+<script>
   let cardIndex = 0;
   const cards = document.querySelectorAll('.card');
+  const mainTitle = document.getElementById('main-title');
+  const startBtn = document.getElementById('start-btn');
 
   function nextCard() {
+    if (cardIndex === 0) {
+      mainTitle.style.opacity = '0';
+      startBtn.style.opacity = '0';
+
+      setTimeout(() => {
+        mainTitle.style.display = 'none';
+        startBtn.style.display = 'none';
+      }, 500);
+    }
+
     if (cardIndex < cards.length) {
       if (cardIndex > 0) {
         cards[cardIndex - 1].style.animation = 'fadeOut 1s forwards';
@@ -178,25 +195,28 @@
     }
   }
 
-  // Функция для создания сердечек
   function createHeart() {
     const heart = document.createElement('div');
     heart.classList.add('heart');
     document.body.appendChild(heart);
-
-    const size = Math.random() * 20 + 10 + 'px';
-    heart.style.width = size;
-    heart.style.height = size;
     heart.style.left = Math.random() * 100 + 'vw';
     heart.style.animationDuration = Math.random() * 3 + 2 + 's';
 
-    setTimeout(() => {
-      heart.remove();
-    }, 4000);
+    setTimeout(() => heart.remove(), 4000);
   }
 
-  // Запуск анимации сердечек каждые 200 мс
+  function createSparkle() {
+    const sparkle = document.createElement('div');
+    sparkle.classList.add('sparkle');
+    sparkle.style.left = Math.random() * 100 + 'vw';
+    sparkle.style.top = Math.random() * 100 + 'vh';
+    document.body.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 2000);
+  }
+
   setInterval(createHeart, 200);
+  setInterval(createSparkle, 500);
 </script>
 
 </body>
